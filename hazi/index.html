@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Website</title>
+    <style>
+      body {
+        background: teal;
+      }
+
+      fieldset {
+        border-color: black;
+        border-style: solid;
+        border-radius: 4px;
+      }
+
+      #first-div {
+        border: 2px solid black;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 4px;
+      }
+      #first-div img {
+        border: 1px solid black;
+        margin-right: 10px;
+        border-radius: 4px;
+        max-width: 150px;
+
+      }
+
+      #second-div {
+        border: 2px solid black;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 4px;
+
+      }
+
+      .about-me {
+        margin-top: 20px;
+      }
+      .about-me h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+    </style>
+    <button onclick="showList()">Show List</button>
+
+    <script>
+      var data = [
+        {
+            "img": "img1.jpg",
+            "name": "name",
+            "desc": "valami a faszom"
+        },
+        {
+            "img": "img2.jpg",
+            "name": "name2",
+            "desc": "valami a faszom2"
+        }
+      ]
+      function showList(){
+        fetch("data.json")
+          .then(response => response.json())
+          .then(data => createList(data));
+      }
+
+      function createList1(data) {
+        const mainUL = document.createElement('ol');
+        for (let i = 0; i < data.result.length; i++) {
+          const studentLI = document.createElement('li');
+          studentLI.innerHTML = data.result[i].name;
+
+          // create list for marks
+          const marksUL = document.createElement('ul');
+          for (var key in data.result[i].marks) {
+            const marksLI = document.createElement('li');
+            marksLI.innerHTML = key + ': ' + data.result[i].marks[key];
+            marksUL.appendChild(marksLI);
+          }
+
+          // append marks list to studentLI
+          studentLI.appendChild(marksUL);
+          // append student list to mainUL
+          mainUL.appendChild(studentLI);
+        }
+        // append mainUL to body
+        document.body.appendChild(mainUL);
+      }
+
+      function createList() {
+        const mainUl = document.createElement('ul');
+        for(let i = 0; i < data.length; i++) {
+          const mainDIV = document.createElement('div');
+          mainDIV.setAttribute('class', 'project-div');
+          const mainDIVimg = document.createElement('img');
+          mainDIVimg.setAttribute('class', 'projectIMG');
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="first-div">
+      <img src="img.jpg" alt="My Image">
+      <div>
+        <h1>My Name</h1>
+        <div class="about-me">
+          <fieldset>
+			<legend>Magamról</legend>
+			<p>
+				Ez egy rövid leírás magamról
+			</p>
+		  </fieldset>
+        </div>
+      </div>
+    </div>
+    <div id="second-div">
+      <form><!--
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Submit">-->
+
+        <form action="https://formspree.io/f/{form_id}" method="post">
+          <label for="email">Your Email</label>
+          <input name="Email" id="email" type="email">
+          <button type="submit">Submit</button>
+        </form>
+      </form>
+    </div>
+  </body>
+</html>

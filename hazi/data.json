@@ -1,0 +1,14 @@
+{
+    "data": [
+        {
+            "img": "img1.jpg",
+            "name": "name",
+            "desc": "valami a faszom"
+        },
+        {
+            "img": "img2.jpg",
+            "name": "name2",
+            "desc": "valami a faszom2"
+        }
+    ]
+}
